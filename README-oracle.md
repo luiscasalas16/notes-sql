@@ -1,6 +1,7 @@
 # notes-sql / oracle
 
 - [Herramienta de administración - SQL Developer](https://www.oracle.com/database/sqldeveloper/technologies/download/)
+- [Documentación oficial](https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html)
 
 ## Bases de Datos de Ejemplo
 
@@ -8,51 +9,71 @@
 - [Genérica](https://github.com/lerocha/chinook-database)
 - [Adicionales](https://dataedo.com/kb/databases/oracle/sample-databases)
 
-## TODO
+## Docker
 
-https://github.com/steveswinsburg/oracle19c-docker
-https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md
-https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html
+- [Guía oficial](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md)
+- [Guía adicional](https://github.com/steveswinsburg/oracle19c-docker)
 
-https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html
-LINUX.X64_193000_db_home.zip
-git clone https://github.com/oracle/docker-images.git
+Construir imagen:
+
+```powershell
+# clonar repositorio
+git clone "https://github.com/oracle/docker-images.git"
+# navegar a directorio
 cd \docker-images\OracleDatabase\SingleInstance\dockerfiles\19.3.0
-docker build -t oracle/database:19.3.0-EE --build-arg DB_EDITION=EE .
+# descargar LINUX.X64_193000_db_home.zip
+Start-Process "https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html"
+# navegar a directorio
+cd \docker-images\OracleDatabase\SingleInstance\dockerfiles
+# ejecutar construcción de imagen
+wsl -e ./buildContainerImage.sh -v 19.3.0 -t oracle-database-19.3.0-ee -e
+```
 
-docker run --name "oracle19.3" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=orasid -e ORACLE_PDB=orapdb -e ORACLE_PWD=orapwd -v /opt/oracle/oradata -d oracle/database:19.3.0-EE
-docker logs oracle19.3 --follow
+Ejecutar imagen:
 
-conect
-database: orapdb
-user name: sys
-password: orapwd
-rol: sysdba
+```powershell
+# crear carpeta de datos
+New-Item -ItemType Directory -Force -Path "$HOME\.demo\oracle-demo-data"
+docker volume create "oracle-demo-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\oracle-demo-data"
+# ejecutar imagen
+docker run --name "oracle-demo" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "oracle-demo-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
+# esperar a que finalice el proceso
+docker logs "oracle-demo" --follow
+```
 
-# contectar a bash de contenedor
+- Conectar por herramienta
 
-docker exec -it oracle19.3 /bin/bash
+Hostname: localhost
+Port: 1521
+Service Name: ORCLPDB
+Username: sys
+Password: ORCLPWD
+Role: AS SYSDBA
 
-# contectar con administrador de servidor
+- Conectar por bash
 
-sqlplus sys/orapwd@//localhost:1521/orapdb as sysdba
+```powershell
+# conectar a bash de contenedor
+docker exec -it "oracle-demo" /bin/bash
+# conectar con administrador de servidor
+sqlplus sys/ORCLPWD@//localhost:1521/ORCLPDB AS SYSDBA
+# conectar con administrador de pdb
+sqlplus pdbadmin/ORCLPWD@//localhost:1521/ORCLPDB
+```
 
-# contectar con administrador de pdb
+- Crear usuario
 
-sqlplus pdbadmin/orapwd@//localhost:1521/orapdb
-
+```sql
 -- Create a user
 CREATE USER developer IDENTIFIED BY developer;
 --Grant permissions
 GRANT CONNECT, RESOURCE TO developer;
+```
 
-docker container start oracle19.3
-docker container stop oracle19.3
+- Ejecutar script
 
-mkdir C:\docker
-docker image save -o "C:\docker\oracle-database-19.3.0-EE.tar" "oracle/database:19.3.0-EE"
-docker load -i "C:\docker\oracle-database-19.3.0-EE.tar"
-
-$container='oracle19.3'
-$connection_sys='sys/orapwd@//localhost:1521/orapdb as sysdba'
+```powershell
+$container='"oracle-demo"'
+$connection_sys='sys/ORCLPWD@//localhost:1521/ORCLPDB AS SYSDBA'
 Get-Content Script.sql | docker exec -i $container sqlplus $connection_sys
+```
