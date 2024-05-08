@@ -43,12 +43,14 @@ docker logs "oracle-demo" --follow
 
 - Conectar por herramienta
 
+```txt
 Hostname: localhost
 Port: 1521
 Service Name: ORCLPDB
 Username: sys
-Password: ORCLPWD
+Password: DEMO123*
 Role: AS SYSDBA
+```
 
 - Conectar por bash
 
@@ -56,9 +58,17 @@ Role: AS SYSDBA
 # conectar a bash de contenedor
 docker exec -it "oracle-demo" /bin/bash
 # conectar con administrador de servidor
-sqlplus sys/ORCLPWD@//localhost:1521/ORCLPDB AS SYSDBA
+sqlplus sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA
 # conectar con administrador de pdb
-sqlplus pdbadmin/ORCLPWD@//localhost:1521/ORCLPDB
+sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
+```
+
+- Ejecutar script
+
+```powershell
+$container='oracle-demo'
+$connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
+Get-Content ".\examples\Chinook_Oracle.sql" | docker exec -i $container sqlplus $connection_sys
 ```
 
 - Crear usuario
@@ -68,12 +78,4 @@ sqlplus pdbadmin/ORCLPWD@//localhost:1521/ORCLPDB
 CREATE USER developer IDENTIFIED BY developer;
 --Grant permissions
 GRANT CONNECT, RESOURCE TO developer;
-```
-
-- Ejecutar script
-
-```powershell
-$container='"oracle-demo"'
-$connection_sys='sys/ORCLPWD@//localhost:1521/ORCLPDB AS SYSDBA'
-Get-Content Script.sql | docker exec -i $container sqlplus $connection_sys
 ```

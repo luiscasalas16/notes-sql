@@ -37,7 +37,27 @@ docker logs "mssql-demo" --follow
 
 - Conectar por herramienta
 
+```txt
 Hostname: localhost
 Port: 1433
 Username: sa
-Password: DEMO123\*
+Password: DEMO123*
+```
+
+- Conectar por bash
+
+```powershell
+# conectar a bash de contenedor
+docker exec -it "mssql-demo" /bin/bash
+# conectar con administrador
+/opt/mssql-tools/bin/sqlcmd -S localhost -U 'sa' -P 'DEMO123*'
+```
+
+- Ejecutar script
+
+```powershell
+$container='mssql-demo'
+$connection_user='sa'
+$connection_password='DEMO123*'
+Get-Content ".\examples\Chinook_SqlServer_AutoIncrementPKs.sql" | docker exec -i $container /opt/mssql-tools/bin/sqlcmd -S localhost -U $connection_user -P $connection_password
+```
