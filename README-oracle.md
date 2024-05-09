@@ -1,7 +1,7 @@
 # notes-sql / oracle
 
 - [Herramienta de administración - SQL Developer](https://www.oracle.com/database/sqldeveloper/technologies/download/)
-- [Documentación oficial](https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html)
+- [Documentación oficial 19c](https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html)
 
 ## Bases de Datos de Ejemplo
 
@@ -12,9 +12,9 @@
 ## Docker
 
 - [Guía oficial](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md)
-- [Guía adicional](https://github.com/steveswinsburg/oracle19c-docker)
+- [Guía adicional 19c](https://github.com/steveswinsburg/oracle19c-docker)
 
-Construir imagen:
+Construir imagen 19c:
 
 ```powershell
 # clonar repositorio
@@ -29,7 +29,7 @@ cd \docker-images\OracleDatabase\SingleInstance\dockerfiles
 wsl -e ./buildContainerImage.sh -v 19.3.0 -t oracle-database-19.3.0-ee -e
 ```
 
-Ejecutar imagen:
+Ejecutar imagen 19c:
 
 ```powershell
 # crear carpeta de datos
