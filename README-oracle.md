@@ -68,17 +68,9 @@ sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
 ```powershell
 $container='oracle-demo'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
-Get-Content ".\examples\Chinook_Oracle_Tables.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_Data_1.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_Data_2.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_Data_3.sql" | docker exec -i $container sqlplus $connection_sys
-```
-
-- Crear usuario
-
-```sql
--- Create a user
-CREATE USER developer IDENTIFIED BY developer;
---Grant permissions
-GRANT CONNECT, RESOURCE TO developer;
+Get-Content ".\examples\Chinook_Oracle_1_Tables.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\Chinook_Oracle_2_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\Chinook_Oracle_3_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\Chinook_Oracle_4_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\Chinook_Oracle_5_Identities.sql" | docker exec -i $container sqlplus $connection_sys
 ```
