@@ -1,7 +1,7 @@
 # notes-sql / mssql
 
-- [Versiones](https://sqlserverbuilds.blogspot.com)
 - [Herramienta de administración - SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- [Versiones](https://sqlserverbuilds.blogspot.com)
 
 ## Bases de Datos de Ejemplo
 
