@@ -7,33 +7,8 @@
    License: https://github.com/lerocha/chinook-database/blob/master/LICENSE.md
 ********************************************************************************/
 
-
-/*******************************************************************************
-   Drop database if it exists
-********************************************************************************/
-DROP USER chinook CASCADE;
-
-
-/*******************************************************************************
-   Create database
-********************************************************************************/
-CREATE USER chinook
-IDENTIFIED BY chinook
-DEFAULT TABLESPACE users
-TEMPORARY TABLESPACE temp
-QUOTA 10M ON users;
-
-GRANT connect to chinook;
-GRANT resource to chinook;
-GRANT create session TO chinook;
-GRANT create table TO chinook;
-GRANT create view TO chinook;
-
-
-
 ALTER SESSION SET current_schema = chinook;
-
-
+SET FEEDBACK OFF;
 
 /*******************************************************************************
    Create Tables

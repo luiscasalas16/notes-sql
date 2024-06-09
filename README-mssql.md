@@ -21,10 +21,10 @@
 - [Guía oficial completa](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment)
 - [Imágenes](https://hub.docker.com/_/microsoft-mssql-server)
 
-Ejecutar imagen:
+### Ejecutar imagen
 
 ```powershell
-# crear carpeta de datos
+# crear carpetas de datos
 New-Item -ItemType Directory -Force -Path "$HOME\.demo\mssql-demo-data"
 docker volume create "mssql-demo-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\mssql-demo-data"
 docker volume create "mssql-demo-log" --opt o=bind --opt type=none --opt device="$HOME\.demo\mssql-demo-log"
@@ -35,7 +35,7 @@ docker run --name "mssql-demo" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASS
 docker logs "mssql-demo" --follow
 ```
 
-- Conectar por herramienta
+### Conectar por herramienta
 
 ```txt
 Hostname: localhost
@@ -44,7 +44,7 @@ Username: sa
 Password: DEMO123*
 ```
 
-- Conectar por bash
+### Conectar por bash
 
 ```powershell
 # conectar a bash de contenedor
@@ -53,7 +53,7 @@ docker exec -it "mssql-demo" /bin/bash
 /opt/mssql-tools/bin/sqlcmd -S localhost -U 'sa' -P 'DEMO123*'
 ```
 
-- Ejecutar script
+### Ejecutar script
 
 ```powershell
 $container='mssql-demo'

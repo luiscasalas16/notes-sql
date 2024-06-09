@@ -7,14 +7,8 @@
    License: https://github.com/lerocha/chinook-database/blob/master/LICENSE.md
 ********************************************************************************/
 
-
-
-
 ALTER SESSION SET current_schema = chinook;
 SET FEEDBACK OFF;
-
-
-
 
 /*******************************************************************************
    Populate Tables
