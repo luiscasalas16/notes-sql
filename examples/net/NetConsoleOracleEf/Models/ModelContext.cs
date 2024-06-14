@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace NetOracleEntityFramework.Models;
+namespace NetConsoleOracleEf.Models;
 
 public partial class ModelContext : DbContext
 {

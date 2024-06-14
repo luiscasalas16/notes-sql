@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using NetOracleEntityFramework.Models;
+using NetConsoleOracleEf.Models;
 
-namespace NetOracleEntityFramework
+namespace NetConsoleOracleEf
 {
     internal class ChinookDbContext : DbContext
     {

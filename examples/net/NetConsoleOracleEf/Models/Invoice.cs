@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NetOracleEntityFramework.Models;
+namespace NetConsoleOracleEf.Models;
 
 public partial class Invoice
 {

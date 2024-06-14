@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace NetOracleEntityFramework
+namespace NetConsoleOracleEf
 {
     internal static class Program
     {

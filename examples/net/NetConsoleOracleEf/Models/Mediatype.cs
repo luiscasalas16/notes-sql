@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NetOracleEntityFramework.Models;
+namespace NetConsoleOracleEf.Models;
 
-public partial class Playlist
+public partial class Mediatype
 {
-    public decimal Playlistid { get; set; }
+    public decimal Mediatypeid { get; set; }
 
     public string? Name { get; set; }
 

@@ -16,7 +16,7 @@
 - [Recursos oficiales](https://www.oracle.com/database/technologies/net-downloads.html)
 - [Ejemplos oficiales](https://github.com/oracle/dotnet-db-samples)
 - Nuget Packages
-  - [Ado](https://www.nuget.org/packages/Oracle.ManagedDataAccess.Core)
+  - [ADO](https://www.nuget.org/packages/Oracle.ManagedDataAccess.Core)
   - [Entity Framework](https://www.nuget.org/packages/Oracle.EntityFrameworkCore)
 - Extensiones
   - [VS 2022](https://marketplace.visualstudio.com/items?itemName=OracleCorporation.OracleDeveloperToolsForVisualStudio2022)

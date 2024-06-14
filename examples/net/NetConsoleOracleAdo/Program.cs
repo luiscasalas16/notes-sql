@@ -1,7 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using Spectre.Console;
 
-namespace NetOracleAdo
+namespace NetConsoleOracleAdo
 {
     internal static class Program
     {
