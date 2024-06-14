@@ -8,13 +8,13 @@ namespace NetConsoleOracleEf
         dotnet ef dbcontext scaffold "User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;" Oracle.EntityFrameworkCore --output-dir "Models" --force
         */
 
-        const string connectionString = @"User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;";
+        public const string ConnectionString = @"User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;";
 
         static void Main()
         {
             try
             {
-                using var db = new ModelContext(connectionString);
+                using var db = new ModelContext();
 
                 AnsiConsole.MarkupLine($"[white]AC/DC Albums:[/]");
 

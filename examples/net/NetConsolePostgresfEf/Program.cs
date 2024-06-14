@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace NetConsolePostgresfEf
 {
@@ -9,13 +8,13 @@ namespace NetConsolePostgresfEf
         dotnet ef dbcontext scaffold "Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir "Models"
         */
 
-        const string connectionString = $"Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;";
+        public const string ConnectionString = $"Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;";
 
         static void Main()
         {
             try
             {
-                using var db = new ModelContext(connectionString);
+                using var db = new ModelContext();
 
                 AnsiConsole.MarkupLine($"[white]AC/DC Albums:[/]");
 

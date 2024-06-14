@@ -8,9 +8,9 @@ public partial class ModelContext : DbContext
 {
     private readonly string _connectionString;
 
-    public ModelContext(string connectionString)
+    public ModelContext()
     {
-        _connectionString = connectionString;
+        _connectionString = Program.ConnectionString;
     }
 
     public virtual DbSet<Album> Albums { get; set; }
