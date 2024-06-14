@@ -88,10 +88,10 @@ sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
 ```powershell
 $container='oracle-demo'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
-Get-Content ".\examples\Chinook_Oracle_0_User.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_1_Tables.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_2_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_3_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_4_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\Chinook_Oracle_5_Identities.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_0_User.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_1_Tables.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_2_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_3_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_4_Data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\Chinook_Oracle_5_Identities.sql" | docker exec -i $container sqlplus $connection_sys
 ```

@@ -55,5 +55,5 @@ psql -h localhost -U postgres
 ```powershell
 $container='postgres-demo'
 $connection_user='postgres'
-Get-Content ".\examples\Chinook_PostgreSql.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
