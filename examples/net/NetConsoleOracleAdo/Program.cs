@@ -5,18 +5,13 @@ namespace NetConsoleOracleAdo
 {
     internal static class Program
     {
-        const string user = "chinook";
-        const string pwd = "chinook";
-        const string db = "localhost/ORCLPDB";
-
-        const string conStringUser =
-            "User Id=" + user + ";Password=" + pwd + ";Data Source=" + db + ";";
+        const string connectionString = @"User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;";
 
         static async Task Main()
         {
             try
             {
-                using OracleConnection connection = new(conStringUser);
+                using OracleConnection connection = new(connectionString);
                 using OracleCommand command = connection.CreateCommand();
 
                 await connection.OpenAsync();

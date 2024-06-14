@@ -4,20 +4,19 @@ namespace NetConsoleOracleEf
 {
     internal static class Program
     {
+        //Scaffold-DbContext "User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;" Oracle.EntityFrameworkCore -OutputDir Models
+
+        const string connectionString = @"User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;";
+
         static void Main()
         {
-            //Scaffold-DbContext "User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;" Oracle.EntityFrameworkCore -OutputDir Models
-
             try
             {
-                using var db = new ChinookDbContext();
+                using var db = new ModelContext(connectionString);
 
                 AnsiConsole.MarkupLine($"[white]AC/DC Albums:[/]");
 
-                var albums = db
-                    .Album.Where(a => a.Artist.Name == "AC/DC")
-                    .Select(a => a.Title)
-                    .ToList();
+                var albums = db.Albums.Where(a => a.Artist.Name == "AC/DC").Select(a => a.Title).ToList();
 
                 foreach (var album in albums)
                     AnsiConsole.MarkupLine($"[white] - {album.EscapeMarkup()}[/]");

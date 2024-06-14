@@ -1,0 +1,24 @@
+<!-- Uso de Directory.Build.props para personalizar todos los proyectos en una solución. -->
+<Project>
+  <ItemGroup>
+    <!-- Uso de package CSharpier.MsBuild para ejecutar CSharpier (formateador de código de C#) cuando se hace build de los proyectos.  -->
+    <PackageReference Include="CSharpier.MsBuild" Version="0.28.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <!-- Uso de package SonarAnalyzer.CSharp para ejecutar SonarAnalyzer (analizadores de código estático) cuando se hace build de los proyectos.  -->
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.26.0.92422">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Uso de configuración de code analysis de .NET para mejorar el análisis de código. Se configura que todas las advertencias del análisis de código también se tratan como errores.  -->
+  <PropertyGroup>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalisisMode>all</AnalisisMode>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>
