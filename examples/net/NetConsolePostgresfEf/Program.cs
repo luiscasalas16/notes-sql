@@ -1,14 +1,15 @@
-﻿using Spectre.Console;
+﻿using Microsoft.EntityFrameworkCore;
+using Spectre.Console;
 
-namespace NetConsoleOracleEf
+namespace NetConsolePostgresfEf
 {
     internal static class Program
     {
         /*
-        dotnet ef dbcontext scaffold "User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;" Oracle.EntityFrameworkCore --output-dir "Models" --force
+        dotnet ef dbcontext scaffold "Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir "Models"
         */
 
-        const string connectionString = @"User Id=chinook;Password=chinook;Data Source=localhost/ORCLPDB;";
+        const string connectionString = $"Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;";
 
         static void Main()
         {

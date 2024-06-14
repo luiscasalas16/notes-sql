@@ -5,7 +5,7 @@ namespace NetConsolePostgresAdo
 {
     internal static class Program
     {
-        const string connectionString = $"Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook";
+        const string connectionString = $"Host=localhost;Username=postgres;Password=DEMO123*;Database=chinook;";
 
         static async Task Main()
         {
