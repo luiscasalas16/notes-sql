@@ -55,5 +55,24 @@ psql -h localhost -U postgres
 ```powershell
 $container='postgres-demo'
 $connection_user='postgres'
+Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -U $connection_user
+```
+
+### Base de datos Chinook
+
+```powershell
+$container='postgres-demo'
+$connection_user='postgres'
 Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $container psql -h localhost -U $connection_user
+```
+
+### Base de datos Evently
+
+```powershell
+$container='postgres-demo'
+$connection_user='postgres'
+Get-Content ".\examples\evently\postgres_attendance_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_events_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_ticketing_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_users_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```

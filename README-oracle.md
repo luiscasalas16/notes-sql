@@ -88,10 +88,30 @@ sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
 ```powershell
 $container='oracle-demo'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
-Get-Content ".\examples\chinook\Chinook_Oracle_0_User.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\chinook\Chinook_Oracle_1_Tables.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\chinook\Chinook_Oracle_2_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\chinook\Chinook_Oracle_3_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\chinook\Chinook_Oracle_4_Data.sql" | docker exec -i $container sqlplus $connection_sys
-Get-Content ".\examples\chinook\Chinook_Oracle_5_Identities.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content "C:\\...\script.sql" | docker exec -i $container sqlplus $connection_sys
+```
+
+### Base de datos Chinook
+
+```powershell
+$container='oracle-demo'
+$connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
+Get-Content ".\examples\chinook\oracle_1_user.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\oracle_2_tables.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\oracle_3_data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\oracle_4_data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\oracle_5_data.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\chinook\oracle_6_identities.sql" | docker exec -i $container sqlplus $connection_sys
+```
+
+### Base de datos Evently
+
+```powershell
+$container='oracle-demo'
+$connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
+Get-Content ".\examples\evently\oracle_attendance_schema.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\evently\oracle_events_schema.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\evently\oracle_ticketing_schema.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\evently\oracle_users_schema.sql" | docker exec -i $container sqlplus $connection_sys
+Get-Content ".\examples\evently\oracle.sql" | docker exec -i $container sqlplus $connection_sys
 ```

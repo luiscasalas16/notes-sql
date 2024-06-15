@@ -1,22 +1,20 @@
-﻿DO $EF$
-BEGIN
-    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'events') THEN
-        CREATE SCHEMA events;
-    END IF;
-END $EF$;
-CREATE TABLE IF NOT EXISTS events."__EFMigrationsHistory" (
-    migration_id character varying(150) NOT NULL,
-    product_version character varying(32) NOT NULL,
-    CONSTRAINT pk___ef_migrations_history PRIMARY KEY (migration_id)
-);
+﻿SELECT 'CREATE DATABASE evently' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'evently')\gexec
 
-START TRANSACTION;
+\c evently;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'events') THEN
-        CREATE SCHEMA events;
-    END IF;
+	IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'events') THEN
+	    CREATE SCHEMA events;
+	END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+	IF NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='events') THEN
+		CREATE USER events WITH PASSWORD 'events';
+		GRANT ALL ON SCHEMA events TO events;
+	END IF;
 END $EF$;
 
 CREATE TABLE events.categories (
@@ -85,9 +83,4 @@ CREATE TABLE events.ticket_types (
 CREATE INDEX ix_events_category_id ON events.events (category_id);
 
 CREATE INDEX ix_ticket_types_event_id ON events.ticket_types (event_id);
-
-INSERT INTO events."__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20240402131624_Create_Database', '8.0.4');
-
-COMMIT;
 

@@ -1,22 +1,20 @@
-﻿DO $EF$
-BEGIN
-    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'attendance') THEN
-        CREATE SCHEMA attendance;
-    END IF;
-END $EF$;
-CREATE TABLE IF NOT EXISTS attendance."__EFMigrationsHistory" (
-    migration_id character varying(150) NOT NULL,
-    product_version character varying(32) NOT NULL,
-    CONSTRAINT pk___ef_migrations_history PRIMARY KEY (migration_id)
-);
+﻿SELECT 'CREATE DATABASE evently' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'evently')\gexec
 
-START TRANSACTION;
+\c evently;
 
 DO $EF$
 BEGIN
-    IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'attendance') THEN
-        CREATE SCHEMA attendance;
-    END IF;
+	IF NOT EXISTS(SELECT 1 FROM pg_namespace WHERE nspname = 'attendance') THEN
+	    CREATE SCHEMA attendance;
+	END IF;
+END $EF$;
+
+DO $EF$
+BEGIN
+	IF NOT EXISTS(SELECT 1 FROM pg_roles WHERE rolname='attendance') THEN
+		CREATE USER attendance WITH PASSWORD 'attendance';
+		GRANT ALL ON SCHEMA attendance TO attendance;
+	END IF;
 END $EF$;
 
 CREATE TABLE attendance.attendees (
@@ -99,9 +97,4 @@ CREATE INDEX ix_tickets_attendee_id ON attendance.tickets (attendee_id);
 CREATE UNIQUE INDEX ix_tickets_code ON attendance.tickets (code);
 
 CREATE INDEX ix_tickets_event_id ON attendance.tickets (event_id);
-
-INSERT INTO attendance."__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20240404132040_Create_Database', '8.0.4');
-
-COMMIT;
 

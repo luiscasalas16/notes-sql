@@ -10,16 +10,12 @@
 /*******************************************************************************
    Drop database if it exists
 ********************************************************************************/
-DROP USER chinook CASCADE;
+-- DROP USER chinook CASCADE;
 
 /*******************************************************************************
    Create database
 ********************************************************************************/
-CREATE USER chinook
-IDENTIFIED BY chinook
-DEFAULT TABLESPACE users
-TEMPORARY TABLESPACE temp
-QUOTA 10M ON users;
+CREATE USER chinook IDENTIFIED BY chinook;
 
 GRANT connect to chinook;
 GRANT resource to chinook;
