@@ -25,14 +25,14 @@
 
 ```powershell
 # crear carpetas de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.demo\mssql-demo-data"
-docker volume create "mssql-demo-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\mssql-demo-data"
-docker volume create "mssql-demo-log" --opt o=bind --opt type=none --opt device="$HOME\.demo\mssql-demo-log"
-docker volume create "mssql-demo-secrets" --opt o=bind --opt type=none --opt device="$HOME\.demo\mssql-demo-secrets"
+New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-mssql-data"
+docker volume create "db-demo-mssql-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-mssql-data"
+docker volume create "db-demo-mssql-log" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-mssql-log"
+docker volume create "db-demo-mssql-secrets" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-mssql-secrets"
 # ejecutar contenedor
-docker run --name "mssql-demo" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -v "mssql-demo-data:/var/opt/mssql/data" -v "mssql-demo-log:/var/opt/mssql/log" -v "mssql-demo-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04"
+docker run --name "db-demo-mssql" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04"
 # monitorear contenedor
-docker logs "mssql-demo" --follow
+docker logs "db-demo-mssql" --follow
 ```
 
 ### Conectar por herramienta
@@ -48,7 +48,7 @@ Password: DEMO123*
 
 ```powershell
 # conectar a bash de contenedor
-docker exec -it "mssql-demo" /bin/bash
+docker exec -it "db-demo-mssql" /bin/bash
 # conectar con administrador
 /opt/mssql-tools/bin/sqlcmd -S localhost -U 'sa' -P 'DEMO123*'
 ```
@@ -56,7 +56,7 @@ docker exec -it "mssql-demo" /bin/bash
 ### Ejecutar script
 
 ```powershell
-$container='mssql-demo'
+$container='db-demo-mssql'
 $connection_user='sa'
 $connection_password='DEMO123*'
 Get-Content ".\examples\chinook\Chinook_SqlServer.sql" | docker exec -i $container /opt/mssql-tools/bin/sqlcmd -S localhost -U $connection_user -P $connection_password

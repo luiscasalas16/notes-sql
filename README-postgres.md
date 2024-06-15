@@ -24,12 +24,12 @@
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.demo\postgres-demo-data"
-docker volume create "postgres-demo-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\postgres-demo-data"
+New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-postgres-data"
+docker volume create "db-demo-postgres-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-postgres-data"
 # ejecutar contenedor
-docker run --name "postgres-demo" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "postgres-demo-data:/var/lib/postgresql/data" -d "postgres:16.3"
+docker run --name "db-demo-postgres" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "db-demo-postgres-data:/var/lib/postgresql/data" -d "postgres:16.3"
 # monitorear contenedor
-docker logs "postgres-demo" --follow
+docker logs "db-demo-postgres" --follow
 ```
 
 ### Conectar por herramienta
@@ -45,7 +45,7 @@ Password: DEMO123*
 
 ```powershell
 # conectar a bash de contenedor
-docker exec -it "postgres-demo" /bin/bash
+docker exec -it "db-demo-postgres" /bin/bash
 # conectar con administrador
 psql -h localhost -U postgres
 ```
@@ -53,7 +53,7 @@ psql -h localhost -U postgres
 ### Ejecutar script
 
 ```powershell
-$container='postgres-demo'
+$container='db-demo-postgres'
 $connection_user='postgres'
 Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
@@ -61,7 +61,7 @@ Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -
 ### Base de datos Chinook
 
 ```powershell
-$container='postgres-demo'
+$container='db-demo-postgres'
 $connection_user='postgres'
 Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
@@ -69,7 +69,7 @@ Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $contai
 ### Base de datos Evently
 
 ```powershell
-$container='postgres-demo'
+$container='db-demo-postgres'
 $connection_user='postgres'
 Get-Content ".\examples\evently\postgres_attendance_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
 Get-Content ".\examples\evently\postgres_events_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user

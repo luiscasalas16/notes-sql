@@ -50,15 +50,15 @@ cd \docker-images\OracleDatabase\SingleInstance\dockerfiles
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.demo\oracle-demo-data"
-docker volume create "oracle-demo-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\oracle-demo-data"
+New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-oracle-data"
+docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-oracle-data"
 # ejecutar contenedor
     # para 19c
-    docker run --name "oracle-demo" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "oracle-demo-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
+    docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
     # para 21c
-    docker run --name "oracle-demo" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "oracle-demo-data:/opt/oracle/oradata" -d "oracle-database-21.3.0-ee"
+    docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-21.3.0-ee"
 # monitorear contenedor
-docker logs "oracle-demo" --follow
+docker logs "db-demo-oracle" --follow
 ```
 
 ### Conectar por herramienta
@@ -76,7 +76,7 @@ Role: SYSDBA
 
 ```powershell
 # conectar a bash de contenedor
-docker exec -it "oracle-demo" /bin/bash
+docker exec -it "db-demo-oracle" /bin/bash
 # conectar con administrador de servidor
 sqlplus sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA
 # conectar con administrador de pdb
@@ -86,7 +86,7 @@ sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
 ### Ejecutar script
 
 ```powershell
-$container='oracle-demo'
+$container='db-demo-oracle'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
 Get-Content "C:\\...\script.sql" | docker exec -i $container sqlplus $connection_sys
 ```
@@ -94,7 +94,7 @@ Get-Content "C:\\...\script.sql" | docker exec -i $container sqlplus $connection
 ### Base de datos Chinook
 
 ```powershell
-$container='oracle-demo'
+$container='db-demo-oracle'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
 Get-Content ".\examples\chinook\oracle_1_user.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_2_tables.sql" | docker exec -i $container sqlplus $connection_sys
@@ -107,7 +107,7 @@ Get-Content ".\examples\chinook\oracle_6_identities.sql" | docker exec -i $conta
 ### Base de datos Evently
 
 ```powershell
-$container='oracle-demo'
+$container='db-demo-oracle'
 $connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
 Get-Content ".\examples\evently\oracle_1_attendance_schema.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\evently\oracle_2_events_schema.sql" | docker exec -i $container sqlplus $connection_sys
