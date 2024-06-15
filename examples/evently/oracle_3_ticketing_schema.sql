@@ -1,6 +1,6 @@
--- DROP USER ticketing CASCADE;
+DROP USER ticketing CASCADE;
 
-CREATE USER ticketing IDENTIFIED BY ticketing DEFAULT TABLESPACE EVENTLY_TS QUOTA UNLIMITED ON EVENTLY_TS;
+CREATE USER ticketing IDENTIFIED BY ticketing QUOTA UNLIMITED ON USERS;
 
 GRANT connect to ticketing;
 GRANT resource to ticketing;

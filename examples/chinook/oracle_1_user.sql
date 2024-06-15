@@ -10,12 +10,12 @@
 /*******************************************************************************
    Drop database if it exists
 ********************************************************************************/
--- DROP USER chinook CASCADE;
+DROP USER chinook CASCADE;
 
 /*******************************************************************************
    Create database
 ********************************************************************************/
-CREATE USER chinook IDENTIFIED BY chinook;
+CREATE USER chinook IDENTIFIED BY chinook QUOTA UNLIMITED ON USERS;
 
 GRANT connect to chinook;
 GRANT resource to chinook;

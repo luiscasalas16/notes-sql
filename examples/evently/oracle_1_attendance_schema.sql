@@ -1,6 +1,6 @@
--- DROP USER attendance CASCADE;
+DROP USER attendance CASCADE;
 
-CREATE USER attendance IDENTIFIED BY attendance DEFAULT TABLESPACE EVENTLY_TS QUOTA UNLIMITED ON EVENTLY_TS;
+CREATE USER attendance IDENTIFIED BY attendance QUOTA UNLIMITED ON USERS;
 
 GRANT connect to attendance;
 GRANT resource to attendance;

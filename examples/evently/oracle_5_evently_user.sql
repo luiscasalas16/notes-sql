@@ -1,6 +1,6 @@
--- DROP USER evently CASCADE;
+DROP USER evently CASCADE;
 
-CREATE USER evently IDENTIFIED BY evently;
+CREATE USER evently IDENTIFIED BY evently QUOTA UNLIMITED ON USERS;
 
 GRANT connect to evently;
 GRANT resource to evently;
