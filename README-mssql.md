@@ -59,5 +59,14 @@ docker exec -it "db-demo-mssql" /bin/bash
 $container='db-demo-mssql'
 $connection_user='sa'
 $connection_password='DEMO123*'
+Get-Content "C:\\...\script.sql" | docker exec -i $container /opt/mssql-tools/bin/sqlcmd -S localhost -U $connection_user -P $connection_password
+```
+
+### Base de datos Chinook
+
+```powershell
+$container='db-demo-mssql'
+$connection_user='sa'
+$connection_password='DEMO123*'
 Get-Content ".\examples\chinook\mssql.sql" | docker exec -i $container /opt/mssql-tools/bin/sqlcmd -S localhost -U $connection_user -P $connection_password
 ```
