@@ -10,4 +10,3 @@ Guías para habilitar cada uno de los motores en Docker y habilitar una base de 
 - [Microsoft SQL Server](README-mssql.md)
 - [PostgreSQL](README-postgres.md)
 - [MariaDB](README-mariadb.md)
-- [MySQL](README-mysql.md)
