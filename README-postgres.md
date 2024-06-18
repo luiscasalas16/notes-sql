@@ -63,7 +63,7 @@ Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -
 ```powershell
 $container='db-demo-postgres'
 $connection_user='postgres'
-Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\chinook\postgres.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
 
 ### Base de datos Evently
@@ -71,8 +71,9 @@ Get-Content ".\examples\chinook\Chinook_PostgreSql.sql" | docker exec -i $contai
 ```powershell
 $container='db-demo-postgres'
 $connection_user='postgres'
-Get-Content ".\examples\evently\postgres_attendance_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_events_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_ticketing_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_users_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_1_attendance_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_2_events_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_3_ticketing_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_4_users_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
+Get-Content ".\examples\evently\postgres_5_evently_user.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
