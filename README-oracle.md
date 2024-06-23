@@ -51,7 +51,7 @@ cd \docker-images\OracleDatabase\SingleInstance\dockerfiles
 ```powershell
 # crear carpeta de datos
 New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-oracle-data"
-docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="$HOME\.demo\db-demo-oracle-data"
+docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-oracle-data"
 # ejecutar contenedor
     # para 19c
     docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
@@ -114,4 +114,17 @@ Get-Content ".\examples\evently\oracle_2_events_schema.sql" | docker exec -i $co
 Get-Content ".\examples\evently\oracle_3_ticketing_schema.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\evently\oracle_4_users_schema.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\evently\oracle_5_evently_user.sql" | docker exec -i $container sqlplus $connection_sys
+```
+
+## Comandos
+
+```sql
+-- terminar conexiones de usuarios
+BEGIN
+ FOR t IN (SELECT sid, serial#, status, username FROM v$session WHERE USERNAME IS NOT NULL AND USERNAME != 'SYS')
+ LOOP
+  EXECUTE IMMEDIATE 'ALTER SYSTEM KILL SESSION ''' || t.sid  || ',' || t.serial# || ''' IMMEDIATE';
+  DBMS_OUTPUT.PUT_LINE('KILL ' || t.sid  || ',' || t.serial#);
+ END LOOP;
+END;
 ```
