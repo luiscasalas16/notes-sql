@@ -20,7 +20,7 @@
 
 - [Imágenes](https://hub.docker.com/_/postgres)
 
-### Ejecutar imagen
+### Ejecutar contenedor
 
 ```powershell
 # crear carpeta de datos

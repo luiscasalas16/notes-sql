@@ -17,7 +17,7 @@
 
 - [Imágenes](https://hub.docker.com/_/mariadb)
 
-### Ejecutar imagen
+### Ejecutar contenedor
 
 ```powershell
 # crear carpeta de datos

@@ -21,7 +21,7 @@
 - [Guía oficial completa](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment)
 - [Imágenes](https://hub.docker.com/_/microsoft-mssql-server)
 
-### Ejecutar imagen
+### Ejecutar contenedor
 
 ```powershell
 # crear carpetas de datos

@@ -25,38 +25,58 @@
 ## Docker
 
 - [Guía oficial](https://github.com/oracle/docker-images/blob/main/OracleDatabase/SingleInstance/README.md)
+- [Imágenes](https://container-registry.oracle.com)
 
-### Construir imagen
+### Ejecutar contenedor (fácil)
+
+Obtener imagen
+
+- Autenticar en la página <https://container-registry.oracle.com/ords/ocr/ba/database/enterprise> y generar un Auth Token (opción en el combobox del correo).
+
+```powershell
+# autenticar registro, username = correo del Oracle Account, password = Auth Token
+docker login container-registry.oracle.com
+# descargar imagen
+docker pull container-registry.oracle.com/database/enterprise:19.3.0.0
+```
+
+Ejecutar imagen
+
+```powershell
+# crear carpeta de datos
+New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-oracle-data"
+docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-oracle-data"
+# ejecutar contenedor para 19c
+docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:19.3.0.0"
+# monitorear contenedor
+docker logs "db-demo-oracle" --follow
+```
+
+### Ejecutar contenedor (difícil)
+
+Construir imagen
 
 ```powershell
 # clonar repositorio
 git clone "https://github.com/oracle/docker-images.git"
 # navegar a directorio
 cd \docker-images\OracleDatabase\SingleInstance\dockerfiles\19.3.0
-# descargar binario
+# descargar binario para 19c LINUX.X64_193000_db_home.zip en \OracleDatabase\SingleInstance\dockerfiles\19.3.0
 Start-Process "https://www.oracle.com/database/technologies/oracle-database-software-downloads.html"
-    # para 19c LINUX.X64_193000_db_home.zip en \OracleDatabase\SingleInstance\dockerfiles\19.3.0
-    # para 21c LINUX.X64_213000_db_home.zip en \OracleDatabase\SingleInstance\dockerfiles\21.3.0
 # navegar a directorio
 cd \docker-images\OracleDatabase\SingleInstance\dockerfiles
-# ejecutar construcción de imagen
-    # para 19c
-    wsl -e ./buildContainerImage.sh -v 19.3.0 -t oracle-database-19.3.0-ee -e
-    # para 21c
-    wsl -e ./buildContainerImage.sh -v 21.3.0 -t oracle-database-21.3.0-ee -e
+# ejecutar construcción de imagen para 19c
+wsl -e ./buildContainerImage.sh -v 19.3.0 -t oracle-database-19.3.0-ee -e
 ```
 
-### Ejecutar imagen
+Ejecutar imagen
 
 ```powershell
 # crear carpeta de datos
 New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-oracle-data"
 docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-oracle-data"
-# ejecutar contenedor
-    # para 19c
-    docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
-    # para 21c
-    docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-21.3.0-ee"
+# ejecutar contenedor para 19c
+docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "oracle-database-19.3.0-ee"
 # monitorear contenedor
 docker logs "db-demo-oracle" --follow
 ```
