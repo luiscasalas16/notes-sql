@@ -15,3 +15,5 @@ Guías para habilitar cada uno de los motores en Docker y habilitar una base de 
 
 - SQLines, convertidor de SQL entre diferentes motores de bases de datos, [download](https://www.sqlines.com/download), [online](https://www.sqlines.com/online)
 - DBeaver, herramienta de base de datos multiplataforma gratuita, [download](https://dbeaver.io/download)
+- draw.io, herramienta de diagramas general [online](https://app.diagrams.net)
+- QuickDBD, herramienta de diagramas entidad relación, [online](https://app.quickdatabasediagrams.com)
