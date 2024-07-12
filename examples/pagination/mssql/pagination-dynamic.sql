@@ -21,19 +21,19 @@ CREATE OR ALTER PROCEDURE BuildQuery
 	@TSQL NVARCHAR(MAX) OUT
 AS
 BEGIN
-	-- consulta parámetros por @Code en tabla demo.Query
+	-- consulta parï¿½metros por @Code en tabla demo.Query
     -- SELECT * FROM demo.Query WHERE CODE = @Code
     -- construye el SQL de la consulta
     -- ...
-    -- retorna el SQL para la ejecución dinámica
+    -- retorna el SQL para la ejecuciï¿½n dinï¿½mica
 	SET @TSQL = 
 	N'
 	WITH cte AS (
 		--- consulta ---
 		SELECT Id, NiceName, IsoCode, PhoneCode
 		FROM demo.Country
+		--- filtros por cada columna ---
 		WHERE	@Search IS NULL OR
-				--- filtros por cada columna ---
 				(NiceName LIKE @Search) OR
 				(IsoCode LIKE @Search) OR
 				(PhoneCode LIKE @Search)
@@ -50,7 +50,7 @@ BEGIN
 		CASE WHEN @OrderColumn = ''PhoneCode'' AND @OrderCriteria = ''DESC'' THEN PhoneCode END DESC,
 		--- ordenamiento defecto ---
 		NiceName ASC
-	--- paginación ---
+	--- paginaciÃ³n ---
 	OFFSET @PageSize * (@PageNumber-1) ROWS FETCH NEXT @PageSize ROWS ONLY;
 	';
 END

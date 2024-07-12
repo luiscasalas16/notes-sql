@@ -10,8 +10,8 @@ BEGIN
 		--- consulta ---
 		SELECT Id, NiceName, IsoCode, PhoneCode
 		FROM demo.Country
+		--- filtros por cada columna ---
 		WHERE	@Search IS NULL OR
-				--- filtros por cada columna ---
 				(NiceName LIKE @Search) OR
 				(IsoCode LIKE @Search) OR
 				(PhoneCode LIKE @Search)

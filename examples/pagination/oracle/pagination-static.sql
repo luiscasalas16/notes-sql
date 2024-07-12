@@ -14,8 +14,8 @@ BEGIN
             --- consulta ---
             SELECT ID, NICE_NAME, ISO_CODE, PHONE_CODE
             FROM DEMO.COUNTRY
+            --- filtros por cada columna ---
             WHERE SEARCH IS NULL OR
-                  --- filtros por cada columna ---
                   (NICE_NAME LIKE SEARCH) OR
                   (ISO_CODE LIKE SEARCH) OR
                   (NICE_NAME LIKE SEARCH)
