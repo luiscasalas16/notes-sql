@@ -15,6 +15,9 @@
 - [Guía oficial](https://www.oracle.com/tools/technologies/quickstart-dotnet-for-oracle-database.html)
 - [Recursos oficiales](https://www.oracle.com/database/technologies/net-downloads.html)
 - [Ejemplos oficiales](https://github.com/oracle/dotnet-db-samples)
+- Programación
+  - [Tipos de datos](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html)
+  - [Mapeo de tipos de datos con C#](https://docs.oracle.com/en/database/oracle/oracle-data-access-components/19.3/odpnt/entityEDMmapping.html)
 - Nuget Packages
   - [ADO](https://www.nuget.org/packages/Oracle.ManagedDataAccess.Core)
   - [Entity Framework](https://www.nuget.org/packages/Oracle.EntityFrameworkCore)
