@@ -21,10 +21,10 @@
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-mariadb-data"
-docker volume create "db-demo-mariadb-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-mariadb-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-mariadb-data"
+docker volume create "db-demo-mariadb-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mariadb-data"
 # ejecutar contenedor
-docker run --name "db-demo-mariadb" -p 3306:3306 -e "MARIADB_USER=mariadb" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -v "db-demo-mariadb-data:/var/lib/mysql" -d "mariadb:11.4.2"
+docker run --name "db-demo-mariadb" -p 3306:3306 -e "MARIADB_USER=mariadb" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -v "db-demo-mariadb-data:/var/lib/mysql" -d "mariadb:11"
 # monitorear contenedor
 docker logs "db-demo-mariadb" --follow
 ```

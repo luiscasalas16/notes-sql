@@ -24,10 +24,10 @@
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-postgres-data"
-docker volume create "db-demo-postgres-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-postgres-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-postgres-data"
+docker volume create "db-demo-postgres-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-postgres-data"
 # ejecutar contenedor
-docker run --name "db-demo-postgres" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "db-demo-postgres-data:/var/lib/postgresql/data" -d "postgres:16.3"
+docker run --name "db-demo-postgres" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "db-demo-postgres-data:/var/lib/postgresql/data" -d "postgres:16"
 # monitorear contenedor
 docker logs "db-demo-postgres" --follow
 ```
@@ -64,16 +64,4 @@ Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -
 $container='db-demo-postgres'
 $connection_user='postgres'
 Get-Content ".\examples\chinook\postgres.sql" | docker exec -i $container psql -h localhost -U $connection_user
-```
-
-### Base de datos Evently
-
-```powershell
-$container='db-demo-postgres'
-$connection_user='postgres'
-Get-Content ".\examples\evently\postgres_1_attendance_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_2_events_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_3_ticketing_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_4_users_schema.sql" | docker exec -i $container psql -h localhost -U $connection_user
-Get-Content ".\examples\evently\postgres_5_evently_user.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```

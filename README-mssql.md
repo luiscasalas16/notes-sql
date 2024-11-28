@@ -15,6 +15,8 @@
 - [Genérica](https://github.com/lerocha/chinook-database)
 - [Adicionales](https://dataedo.com/kb/databases/sql-server/sample-databases)
 
+## Net
+
 ## Docker
 
 - [Guía oficial rápida](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker)
@@ -25,12 +27,12 @@
 
 ```powershell
 # crear carpetas de datos
-New-Item -ItemType Directory -Force -Path "$HOME\.db-demo\db-demo-mssql-data"
-docker volume create "db-demo-mssql-data" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-mssql-data"
-docker volume create "db-demo-mssql-log" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-mssql-log"
-docker volume create "db-demo-mssql-secrets" --opt o=bind --opt type=none --opt device="$HOME\.db-demo\db-demo-mssql-secrets"
+New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-mssql-data"
+docker volume create "db-demo-mssql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-data"
+docker volume create "db-demo-mssql-log" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-log"
+docker volume create "db-demo-mssql-secrets" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-secrets"
 # ejecutar contenedor
-docker run --name "db-demo-mssql" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-CU13-ubuntu-22.04"
+docker run --name "db-demo-mssql" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-latest"
 # monitorear contenedor
 docker logs "db-demo-mssql" --follow
 ```
