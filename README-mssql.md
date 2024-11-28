@@ -27,12 +27,12 @@
 
 ```powershell
 # crear carpetas de datos
-New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-mssql-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker"
 docker volume create "db-demo-mssql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-data"
 docker volume create "db-demo-mssql-log" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-log"
 docker volume create "db-demo-mssql-secrets" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-secrets"
 # ejecutar contenedor
-docker run --name "db-demo-mssql" -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-latest"
+docker run --name "db-demo-mssql" -p 1433:1433 -p 135:135 -p 51000:51000 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e 'MSSQL_RPC_PORT=135' -e 'MSSQL_DTC_TCP_PORT=51000' -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-latest"
 # monitorear contenedor
 docker logs "db-demo-mssql" --follow
 ```

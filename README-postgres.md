@@ -24,7 +24,7 @@
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-postgres-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker"
 docker volume create "db-demo-postgres-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-postgres-data"
 # ejecutar contenedor
 docker run --name "db-demo-postgres" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "db-demo-postgres-data:/var/lib/postgresql/data" -d "postgres:16"

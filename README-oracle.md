@@ -47,7 +47,7 @@ Ejecutar imagen
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-oracle-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker"
 docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-oracle-data"
 # ejecutar contenedor para 19c
 docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:19.3.0.0"

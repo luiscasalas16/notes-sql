@@ -21,7 +21,7 @@
 
 ```powershell
 # crear carpeta de datos
-New-Item -ItemType Directory -Force -Path "C:\Docker\db-demo-mariadb-data"
+New-Item -ItemType Directory -Force -Path "C:\Docker"
 docker volume create "db-demo-mariadb-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mariadb-data"
 # ejecutar contenedor
 docker run --name "db-demo-mariadb" -p 3306:3306 -e "MARIADB_USER=mariadb" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -v "db-demo-mariadb-data:/var/lib/mysql" -d "mariadb:11"
