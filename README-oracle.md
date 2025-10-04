@@ -1,6 +1,7 @@
 # notes-sql / oracle
 
 - [Herramienta de administración - SQL Developer](https://www.oracle.com/database/sqldeveloper/technologies/download/)
+- [Herramienta de scripts - Basic Package + SQL Plus Package](https://www.oracle.com/europe/database/technologies/instant-client/winx64-64-downloads.html)
 - [Documentación oficial 19c](https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html)
 - [Documentación oficial 21c](https://docs.oracle.com/en/database/oracle/oracle-database/21/index.html)
 
