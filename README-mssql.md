@@ -1,57 +1,57 @@
 # notes-sql / mssql
 
-- [Herramienta de administración - SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- Herramientas de administración
+  - Management Studio
+    - [Documentación](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+    - [Instalador v21](https://learn.microsoft.com/en-us/ssms/release-notes-21)
+    - [Instalador v20](https://learn.microsoft.com/en-us/ssms/release-notes-20)
+  - DBeaver
+    - [Documentación](https://dbeaver.com/docs/dbeaver/)
+    - [Instalador](https://dbeaver.io/download/)
 - [Versiones](https://sqlserverbuilds.blogspot.com)
-
-## Bases de Datos de Ejemplo
-
-- Oficiales
-  - Wide World Importers
-    - [Release](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
-    - [Modelo](https://dataedo.com/samples/html/WideWorldImporters)
-  - Adventure Works
-    - [Release](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks)
-    - [Modelo](https://dataedo.com/samples/html/AdventureWorks/)
-- [Genérica](https://github.com/lerocha/chinook-database)
-- [Adicionales](https://dataedo.com/kb/databases/sql-server/sample-databases)
-
-## Net
 
 ## Docker
 
 - [Guía oficial rápida](https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker)
 - [Guía oficial completa](https://learn.microsoft.com/en-us/sql/linux/sql-server-linux-docker-container-deployment)
-- [Imágenes](https://hub.docker.com/_/microsoft-mssql-server)
+- [Docker Images](https://hub.docker.com/_/microsoft-mssql-server)
 
-### Ejecutar contenedor
+### Ejecutar
 
 ```powershell
-# crear carpetas de datos
 New-Item -ItemType Directory -Force -Path "C:\Docker"
-docker volume create "db-demo-mssql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-data"
-docker volume create "db-demo-mssql-log" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-log"
-docker volume create "db-demo-mssql-secrets" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mssql-secrets"
-# ejecutar contenedor
-docker run --name "db-demo-mssql" -p 1433:1433 -p 135:135 -p 51000:51000 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e 'MSSQL_RPC_PORT=135' -e 'MSSQL_DTC_TCP_PORT=51000' -v "db-demo-mssql-data:/var/opt/mssql/data" -v "db-demo-mssql-log:/var/opt/mssql/log" -v "db-demo-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-latest"
-# monitorear contenedor
-docker logs "db-demo-mssql" --follow
+
+docker volume create "db-mssql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-data"
+docker volume create "db-mssql-log" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-log"
+docker volume create "db-mssql-backup" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-backup"
+docker volume create "db-mssql-secrets" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-secrets"
+
+docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e "MSSQL_COLLATION=SQL_Latin1_General_CP1_CI_AI" -v "db-mssql-data:/var/opt/mssql/data" -v "db-mssql-log:/var/opt/mssql/log" -v "db-mssql-backup:/var/opt/mssql/backup" -v "db-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2022-CU20-ubuntu-22.04"
+
+docker logs "db-mssql" --follow
 ```
 
-### Conectar por herramienta
+### Conectar
 
 ```txt
 Hostname: localhost
-Port: 1433
 Username: sa
 Password: DEMO123*
 ```
+Management Studio
+<p align="center">
+  <img src="./assets/mssql1.png" width="317.5"/>
+</p>
+DBeaver
+<p align="center">
+  <img src="./assets/mssql2.png" width="524"/>
+</p>
 
 ### Conectar por bash
 
 ```powershell
-# conectar a bash de contenedor
 docker exec -it "db-demo-mssql" /bin/bash
-# conectar con administrador
+
 /opt/mssql-tools/bin/sqlcmd -S localhost -U 'sa' -P 'DEMO123*'
 ```
 
@@ -72,3 +72,17 @@ $connection_user='sa'
 $connection_password='DEMO123*'
 Get-Content ".\examples\chinook\mssql.sql" | docker exec -i $container /opt/mssql-tools/bin/sqlcmd -S localhost -U $connection_user -P $connection_password
 ```
+
+## Bases de Datos
+
+- Oficiales
+  - Adventure Works
+    - [Release](https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks)
+    - [Modelo](https://dataedo.com/samples/html/AdventureWorks/)
+  - Wide World Importers
+    - [Release](https://github.com/Microsoft/sql-server-samples/releases/tag/wide-world-importers-v1.0)
+    - [Modelo](https://dataedo.com/samples/html/WideWorldImporters)
+- [Genérica](https://github.com/lerocha/chinook-database)
+- [Adicionales](https://dataedo.com/kb/databases/sql-server/sample-databases)
+
+## Net
