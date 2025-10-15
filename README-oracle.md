@@ -24,7 +24,7 @@
   - [Entity Framework](https://www.nuget.org/packages/Oracle.EntityFrameworkCore)
 - Extensiones
   - [VS 2022](https://marketplace.visualstudio.com/items?itemName=OracleCorporation.OracleDeveloperToolsForVisualStudio2022)
-  - [VS Code](https://marketplace.visualstudio.com/items?itemName=Oracle.oracledevtools)
+  - [VS Code](https://marketplace.visualstudio.com/items?itemName=Oracle.sql-developer)
 
 ## Docker
 
