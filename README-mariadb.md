@@ -2,64 +2,44 @@
 
 - [Documentación oficial](https://mariadb.com/kb/en/documentation/)
 
-## Bases de Datos de Ejemplo
-
-- [Genérica](https://github.com/lerocha/chinook-database)
-
-## Net
-
-- [Guía oficial](https://mysqlconnector.net)
-- Nuget Packages
-  - [ADO](https://www.nuget.org/packages/MySqlConnector)
-  - [Entity Framework](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql)
-
 ## Docker
 
-- [Imágenes](https://hub.docker.com/_/mariadb)
+- [Guía oficial e Imágenes](https://hub.docker.com/_/mariadb)
 
 ### Ejecutar contenedor
 
+El siguiente comando en PowerShell descargan la imagen.
+
 ```powershell
-# crear carpeta de datos
+docker pull "mariadb:12.0.2"
+```
+
+Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+
+```powershell
+#creación de carpeta base
 New-Item -ItemType Directory -Force -Path "C:\Docker"
-docker volume create "db-demo-mariadb-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-mariadb-data"
-# ejecutar contenedor
-docker run --name "db-demo-mariadb" -p 3306:3306 -e "MARIADB_USER=mariadb" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -v "db-demo-mariadb-data:/var/lib/mysql" -d "mariadb:11"
-# monitorear contenedor
-docker logs "db-demo-mariadb" --follow
+
+#creación de volúmenes en carpeta base
+docker volume create "db-mariadb-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-mariadb-data"
+
+#creación y ejecución del contenedor
+docker run --name "db-mariadb" -p 3306:3306 -e "MARIADB_USER=user" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -e "MARIADB_DATABASE=demo" -v "db-mariadb-data:/var/lib/mysql" -d "mariadb:12.0.2"
 ```
 
-### Conectar por herramienta
+### Conectar
 
-```txt
-Hostname: localhost
-Port: 3306
-Username: root
-Password: DEMO123*
-```
+DBeaver
+<p align="center">
+  <img src="./assets/mariadb1.png" width="524"/>
+</p>
 
-### Conectar por bash
+## Base de datos de ejemplo
+
+Los siguientes comandos en PowerShell crean la base de datos de ejemplo Chinook. Se debe descargar y cambiar la ruta del archivo sql.
 
 ```powershell
-# conectar a bash de contenedor
-docker exec -it "db-demo-mariadb" /bin/bash
-# conectar con administrador
-mariadb --user=root --password=DEMO123*
-```
-
-### Ejecutar script
-
-```powershell
-$container='db-demo-mariadb'
-$connection_user='root'
-$connection_password='DEMO123*'
-Get-Content "C:\\...\script.sql" | docker exec -i $container mariadb --user=$connection_user --password=$connection_password
-```
-
-### Base de datos Chinook
-
-```powershell
-$container='db-demo-mariadb'
+$container='db-mariadb'
 $connection_user='root'
 $connection_password='DEMO123*'
 Get-Content ".\examples\chinook\mariadb.sql" | docker exec -i $container mariadb --user=$connection_user --password=$connection_password

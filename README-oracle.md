@@ -1,30 +1,12 @@
 # notes-sql / oracle
 
-- [Herramienta de administración - SQL Developer](https://www.oracle.com/database/sqldeveloper/technologies/download/)
-- [Herramienta de scripts - Basic Package + SQL Plus Package](https://www.oracle.com/europe/database/technologies/instant-client/winx64-64-downloads.html)
-- [Documentación oficial 19c](https://docs.oracle.com/en/database/oracle/oracle-database/19/index.html)
-- [Documentación oficial 21c](https://docs.oracle.com/en/database/oracle/oracle-database/21/index.html)
-
-## Bases de Datos de Ejemplo
-
-- [Oficiales](https://github.com/oracle-samples/db-sample-schemas/releases)
-- [Genérica](https://github.com/lerocha/chinook-database)
-- [Adicionales](https://dataedo.com/kb/databases/oracle/sample-databases)
-
-## Net
-
-- [Guía oficial](https://www.oracle.com/tools/technologies/quickstart-dotnet-for-oracle-database.html)
-- [Recursos oficiales](https://www.oracle.com/database/technologies/net-downloads.html)
-- [Ejemplos oficiales](https://github.com/oracle/dotnet-db-samples)
-- Programación
-  - [Tipos de datos](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Data-Types.html)
-  - [Mapeo de tipos de datos con C#](https://docs.oracle.com/en/database/oracle/oracle-data-access-components/19.3/odpnt/entityEDMmapping.html)
-- Nuget Packages
-  - [ADO](https://www.nuget.org/packages/Oracle.ManagedDataAccess.Core)
-  - [Entity Framework](https://www.nuget.org/packages/Oracle.EntityFrameworkCore)
-- Extensiones
-  - [VS 2022](https://marketplace.visualstudio.com/items?itemName=OracleCorporation.OracleDeveloperToolsForVisualStudio2022)
-  - [VS Code](https://marketplace.visualstudio.com/items?itemName=Oracle.sql-developer)
+- [Documentación oficial](https://docs.oracle.com/en/database/oracle/oracle-database/21/index.html)
+- Herramientas de administración
+    - [SQL Developer (oficial)](https://www.oracle.com/database/sqldeveloper/technologies/download/)
+    - [Basic Package + SQL Plus Package (oficial)](https://www.oracle.com/europe/database/technologies/instant-client/winx64-64-downloads.html)
+    - DBeaver (general)
+        - [Documentación](https://dbeaver.com/docs/dbeaver/)
+        - [Instalador](https://dbeaver.io/download/)
 
 ## Docker
 
@@ -33,81 +15,67 @@
 
 ### Ejecutar contenedor
 
-Obtener imagen
+Para obtener la imagen es necesario autenticarse en la página <https://container-registry.oracle.com/ords/ocr/ba/database/enterprise> y generar un Auth Token, para autenticarse en el docker y permitir la descarga de la imagen.
 
-- Autenticar en la página <https://container-registry.oracle.com/ords/ocr/ba/database/enterprise> y generar un Auth Token (opción en el combobox del correo).
-
-```powershell
-# autenticar registro, username = correo del Oracle Account, password = Auth Token
+<p align="center">
+  <img src="./assets/oracle1.png" width="200"/>
+</p>
+<p align="center">
+  <img src="./assets/oracle2.png" width="200"/>
+</p>
+<p align="center">
+  <img src="./assets/oracle3.png" width="200"/>
+</p>
+<p align="center">
+  <img src="./assets/oracle4.png" width="200"/>
+</p>
+<p align="center">
+  <img src="./assets/oracle5.png" width="200"/>
+</p>
+<p align="center">
 docker login container-registry.oracle.com
-# descargar imagen
-docker pull container-registry.oracle.com/database/enterprise:19.3.0.0
-```
+</p>
+<p align="center">
+  <img src="./assets/oracle6.png" width="200"/>
+</p>
 
-Ejecutar imagen
+El siguiente comando en PowerShell descargan la imagen.
 
 ```powershell
-# crear carpeta de datos
+docker pull container-registry.oracle.com/database/enterprise:21.3.0.0
+```
+
+Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+
+```powershell
+#creación de carpeta base
 New-Item -ItemType Directory -Force -Path "C:\Docker"
-docker volume create "db-demo-oracle-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-oracle-data"
-# ejecutar contenedor para 19c
-docker run --name "db-demo-oracle" -p 1521:1521 -p 5500:5500 -e ORACLE_SID=ORCLSID -e ORACLE_PDB=ORCLPDB -e ORACLE_PWD=DEMO123* -e ORACLE_EDITION=enterprise -e INIT_SGA_SIZE=3096 -e INIT_PGA_SIZE=1024 -v "db-demo-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:19.3.0.0"
-# monitorear contenedor
-docker logs "db-demo-oracle" --follow
+
+#creación de volúmenes en carpeta base
+docker volume create "db-oracle-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-oracle-data"
+
+#creación y ejecución del contenedor
+docker run --name "db-oracle" -p 1521:1521 -p 5500:5500 -e "ORACLE_PDB=ORCL" -e "ORACLE_PWD=DEMO123*" -e "ORACLE_EDITION=enterprise" -v "db-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:21.3.0.0"
 ```
 
-### Conectar por herramienta
+### Conectar
 
-```txt
-Host: localhost
-Port: 1521
-Database: ORCLPDB
-Username: sys
-Password: DEMO123*
-Role: SYSDBA
-```
-
-### Conectar por bash
-
-```powershell
-# conectar a bash de contenedor
-docker exec -it "db-demo-oracle" /bin/bash
-# conectar con administrador de servidor
-sqlplus sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA
-# conectar con administrador de pdb
-sqlplus pdbadmin/DEMO123*@//localhost:1521/ORCLPDB
-```
-
-### Ejecutar script
-
-```powershell
-$container='db-demo-oracle'
-$connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
-Get-Content "C:\\...\script.sql" | docker exec -i $container sqlplus $connection_sys
-```
+DBeaver
+<p align="center">
+  <img src="./assets/oracle7.png" width="524"/>
+</p>
 
 ### Base de datos Chinook
 
+Los siguientes comandos en PowerShell crean la base de datos de ejemplo Chinook. Se deben descargar y cambiar la ruta de los archivos sql.
+
 ```powershell
-$container='db-demo-oracle'
-$connection_sys='sys/DEMO123*@//localhost:1521/ORCLPDB AS SYSDBA'
+$container='db-oracle'
+$connection_sys='sys/DEMO123*@//localhost:1521/ORCL AS SYSDBA'
 Get-Content ".\examples\chinook\oracle_1_user.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_2_tables.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_3_data.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_4_data.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_5_data.sql" | docker exec -i $container sqlplus $connection_sys
 Get-Content ".\examples\chinook\oracle_6_identities.sql" | docker exec -i $container sqlplus $connection_sys
-```
-
-## Comandos
-
-```sql
--- terminar conexiones de usuarios
-BEGIN
- FOR t IN (SELECT sid, serial#, status, username FROM v$session WHERE USERNAME IS NOT NULL AND USERNAME != 'SYS')
- LOOP
-  EXECUTE IMMEDIATE 'ALTER SYSTEM KILL SESSION ''' || t.sid  || ',' || t.serial# || ''' IMMEDIATE';
-  DBMS_OUTPUT.PUT_LINE('KILL ' || t.sid  || ',' || t.serial#);
- END LOOP;
-END;
 ```

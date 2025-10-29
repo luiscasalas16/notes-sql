@@ -1,67 +1,49 @@
 # notes-sql / postgres
 
-- [Documentación oficial 16](https://www.postgresql.org/docs/16/index.html)
-
-## Bases de Datos de Ejemplo
-
-- [Genérica](https://github.com/lerocha/chinook-database)
-
-## Net
-
-- [Guía oficial](https://www.npgsql.org)
-- Nuget Packages
-  - [ADO](https://www.nuget.org/packages/Npgsql)
-  - [Entity Framework](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL)
-- Extensiones
-  - [VS 2022](https://marketplace.visualstudio.com/items?itemName=RojanskyS.NpgsqlPostgreSQLIntegration)
-  - [VS Code](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres)
+- [Documentación oficial 18](https://www.postgresql.org/docs/18/index.html)
+- Herramientas de administración
+  - DBeaver (general)
+    - [Documentación](https://dbeaver.com/docs/dbeaver/)
+    - [Instalador](https://dbeaver.io/download/)
 
 ## Docker
 
-- [Imágenes](https://hub.docker.com/_/postgres)
+- [Guía oficial e Imágenes](https://hub.docker.com/_/postgres)
 
 ### Ejecutar contenedor
 
+El siguiente comando en PowerShell descargan la imagen.
+
 ```powershell
-# crear carpeta de datos
+docker pull "postgres:18.0"
+```
+
+Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+
+```powershell
+#creación de carpeta base
 New-Item -ItemType Directory -Force -Path "C:\Docker"
-docker volume create "db-demo-postgres-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-demo-postgres-data"
-# ejecutar contenedor
-docker run --name "db-demo-postgres" -p 5432:5432 -e "POSTGRES_USER=postgres" -e "POSTGRES_PASSWORD=DEMO123*" -e "PGDATA=/var/lib/postgresql/data/pgdata" -v "db-demo-postgres-data:/var/lib/postgresql/data" -d "postgres:16"
-# monitorear contenedor
-docker logs "db-demo-postgres" --follow
+
+#creación de volúmenes en carpeta base
+docker volume create "db-postgres-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-postgres-data"
+
+#creación y ejecución del contenedor
+docker run --name "db-postgres" -p 5432:5432 -e "POSTGRES_USER=user" -e "POSTGRES_PASSWORD=DEMO123*" -e "POSTGRES_DB=demo" -v "db-postgres-data:/var/lib/postgresql" -d "postgres:18.0"
 ```
 
-### Conectar por herramienta
+### Conectar
 
-```txt
-Hostname: localhost
-Port: 5432
-Username: postgres
-Password: DEMO123*
-```
+DBeaver
+<p align="center">
+  <img src="./assets/postgres1.png" width="524"/>
+</p>
 
-### Conectar por bash
+### Base de datos de ejemplo
+
+Los siguientes comandos en PowerShell crean la base de datos de ejemplo Chinook. Se debe descargar y cambiar la ruta del archivo sql.
 
 ```powershell
-# conectar a bash de contenedor
-docker exec -it "db-demo-postgres" /bin/bash
-# conectar con administrador
-psql -h localhost -U postgres
-```
-
-### Ejecutar script
-
-```powershell
-$container='db-demo-postgres'
-$connection_user='postgres'
-Get-Content "C:\\...\script.sql" | docker exec -i $container psql -h localhost -U $connection_user
-```
-
-### Base de datos Chinook
-
-```powershell
-$container='db-demo-postgres'
-$connection_user='postgres'
+$container='db-postgres'
+$connection_user='user'
 Get-Content ".\examples\chinook\postgres.sql" | docker exec -i $container psql -h localhost -U $connection_user
 ```
