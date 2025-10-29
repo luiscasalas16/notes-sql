@@ -1,15 +1,16 @@
 # notes-sql
 
-Este repositorio contiene ejemplos y documentación relacionada con SQL y Bases de Datos.
+Este repositorio contiene ejemplos y documentación relacionada con bases de datos SQL.
 
 ## Motores de Bases de Datos
 
-Guías para habilitar cada uno de los motores en Docker y habilitar una base de datos de ejemplo [Chinook](https://github.com/lerocha/chinook-database).
+Guías para habilitar cada uno de los sistemas gestores de bases de datos y habilitar una base de datos de ejemplo [Chinook](https://github.com/lerocha/chinook-database).
 
-- [Oracle](README-oracle.md)
 - [Microsoft SQL Server](README-mssql.md)
-- [PostgreSQL](README-postgres.md)
+- [Oracle](README-oracle.md)
+- [Postgres](README-postgres.md)
 - [MariaDB](README-mariadb.md)
+- [MySQL](README-mysql.md)
 
 ## Herramientas Generales
 
