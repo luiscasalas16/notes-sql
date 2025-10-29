@@ -2,7 +2,7 @@
 
 Este repositorio contiene ejemplos y documentación relacionada con bases de datos SQL.
 
-## Motores de Bases de Datos
+## Sistemas Gestores de Bases de Datos
 
 Guías para habilitar cada uno de los sistemas gestores de bases de datos y habilitar una base de datos de ejemplo [Chinook](https://github.com/lerocha/chinook-database).
 
