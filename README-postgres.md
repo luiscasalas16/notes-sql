@@ -5,7 +5,7 @@
   - DBeaver (general)
     - [Documentación](https://dbeaver.com/docs/dbeaver/)
     - [Instalador](https://dbeaver.io/download/)
-- "Cheat Sheet"
+- Tutoriales
   - [LearnSQL.com](https://learnsql.com/blog/postgresql-cheat-sheet/postgresql-cheat-sheet-letter.pdf)
   - [tutorialspoint.com](https://www.tutorialspoint.com/postgresql/index.htm)
   - [geeksforgeeks.org](https://www.geeksforgeeks.org/postgresql/postgresql-tutorial/)

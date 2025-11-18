@@ -1,7 +1,7 @@
 # notes-sql / mariadb
 
 - [Documentación oficial](https://mariadb.com/kb/en/documentation/)
-- "Cheat Sheet"
+- Tutoriales
   - [LearnSQL.com](https://learnsql.com/blog/mysql-cheat-sheet/mysql-cheat-sheet-letter.pdf)
   - [tutorialspoint.com](https://www.tutorialspoint.com/mariadb/index.htm)
   - [geeksforgeeks.org](https://www.geeksforgeeks.org/mysql/mysql-tutorial/)

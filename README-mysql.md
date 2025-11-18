@@ -1,7 +1,7 @@
 # notes-sql / mysql
 
 - [Documentación oficial](https://dev.mysql.com/doc/refman/9.5/en/)
-- "Cheat Sheet"
+- Tutoriales
   - [LearnSQL.com](https://learnsql.com/blog/mysql-cheat-sheet/mysql-cheat-sheet-letter.pdf)
   - [tutorialspoint.com](https://www.tutorialspoint.com/mysql/index.htm)
   - [geeksforgeeks.org](https://www.geeksforgeeks.org/mysql/mysql-tutorial/)

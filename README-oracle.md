@@ -7,7 +7,7 @@
   - DBeaver (general)
     - [Documentación](https://dbeaver.com/docs/dbeaver/)
     - [Instalador](https://dbeaver.io/download/)
-- "Cheat Sheet"
+- Tutoriales
   - [cheatsheet.tfix.io](https://cheatsheet.tfix.io/documentation/oracle/)
   - [tutorialspoint.com](https://www.tutorialspoint.com/plsql/index.htm)
   - [geeksforgeeks.org](https://www.geeksforgeeks.org/plsql/pl-sql-tutorial/)

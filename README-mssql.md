@@ -10,7 +10,7 @@
     - [Documentación](https://dbeaver.com/docs/dbeaver/)
     - [Instalador](https://dbeaver.io/download/)
 - [Versiones](https://sqlserverbuilds.blogspot.com)
-- "Cheat Sheet"
+- Tutoriales
   - [LearnSQL.com](https://learnsql.com/blog/sql-server-cheat-sheet/sql-server-cheat-sheet-letter.pdf)
   - [tutorialspoint.com](https://www.tutorialspoint.com/t_sql/index.htm)
 
