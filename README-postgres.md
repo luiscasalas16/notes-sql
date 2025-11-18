@@ -5,6 +5,10 @@
   - DBeaver (general)
     - [Documentación](https://dbeaver.com/docs/dbeaver/)
     - [Instalador](https://dbeaver.io/download/)
+- "Cheat Sheet"
+  - [LearnSQL.com](https://learnsql.com/blog/postgresql-cheat-sheet/postgresql-cheat-sheet-letter.pdf)
+  - [tutorialspoint.com](https://www.tutorialspoint.com/postgresql/index.htm)
+  - [geeksforgeeks.org](https://www.geeksforgeeks.org/postgresql/postgresql-tutorial/)
 
 ## Docker
 
@@ -34,6 +38,7 @@ docker run --name "db-postgres" -p 5432:5432 -e "POSTGRES_USER=user" -e "POSTGRE
 ### Conectar
 
 DBeaver
+
 <p align="center">
   <img src="./assets/postgres1.png" width="524"/>
 </p>

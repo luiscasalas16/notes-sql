@@ -10,6 +10,9 @@
     - [Documentación](https://dbeaver.com/docs/dbeaver/)
     - [Instalador](https://dbeaver.io/download/)
 - [Versiones](https://sqlserverbuilds.blogspot.com)
+- "Cheat Sheet"
+  - [LearnSQL.com](https://learnsql.com/blog/sql-server-cheat-sheet/sql-server-cheat-sheet-letter.pdf)
+  - [tutorialspoint.com](https://www.tutorialspoint.com/t_sql/index.htm)
 
 ## Docker
 
@@ -44,6 +47,7 @@ docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA
 ### Conectar
 
 Management Studio
+
 <p align="center">
   <img src="./assets/mssql1.png" width="317.5"/>
 </p>

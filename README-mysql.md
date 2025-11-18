@@ -1,6 +1,10 @@
 # notes-sql / mysql
 
 - [Documentación oficial](https://dev.mysql.com/doc/refman/9.5/en/)
+- "Cheat Sheet"
+  - [LearnSQL.com](https://learnsql.com/blog/mysql-cheat-sheet/mysql-cheat-sheet-letter.pdf)
+  - [tutorialspoint.com](https://www.tutorialspoint.com/mysql/index.htm)
+  - [geeksforgeeks.org](https://www.geeksforgeeks.org/mysql/mysql-tutorial/)
 
 ## Docker
 
@@ -30,6 +34,7 @@ docker run --name "db-mysql" -p 3306:3306 -e "MYSQL_USER=user" -e "MYSQL_PASSWOR
 ### Conectar
 
 DBeaver
+
 <p align="center">
   <img src="./assets/mysql1.png" width="524"/>
 </p>

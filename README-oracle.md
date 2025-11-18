@@ -2,11 +2,15 @@
 
 - [Documentación oficial](https://docs.oracle.com/en/database/oracle/oracle-database/21/index.html)
 - Herramientas de administración
-    - [SQL Developer (oficial)](https://www.oracle.com/database/sqldeveloper/technologies/download/)
-    - [Basic Package + SQL Plus Package (oficial)](https://www.oracle.com/europe/database/technologies/instant-client/winx64-64-downloads.html)
-    - DBeaver (general)
-        - [Documentación](https://dbeaver.com/docs/dbeaver/)
-        - [Instalador](https://dbeaver.io/download/)
+  - [SQL Developer (oficial)](https://www.oracle.com/database/sqldeveloper/technologies/download/)
+  - [Basic Package + SQL Plus Package (oficial)](https://www.oracle.com/europe/database/technologies/instant-client/winx64-64-downloads.html)
+  - DBeaver (general)
+    - [Documentación](https://dbeaver.com/docs/dbeaver/)
+    - [Instalador](https://dbeaver.io/download/)
+- "Cheat Sheet"
+  - [cheatsheet.tfix.io](https://cheatsheet.tfix.io/documentation/oracle/)
+  - [tutorialspoint.com](https://www.tutorialspoint.com/plsql/index.htm)
+  - [geeksforgeeks.org](https://www.geeksforgeeks.org/plsql/pl-sql-tutorial/)
 
 ## Docker
 
@@ -61,6 +65,7 @@ docker run --name "db-oracle" -p 1521:1521 -p 5500:5500 -e "ORACLE_PDB=ORCL" -e 
 ### Conectar
 
 DBeaver
+
 <p align="center">
   <img src="./assets/oracle7.png" width="524"/>
 </p>

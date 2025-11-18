@@ -1,6 +1,10 @@
 # notes-sql / mariadb
 
 - [Documentación oficial](https://mariadb.com/kb/en/documentation/)
+- "Cheat Sheet"
+  - [LearnSQL.com](https://learnsql.com/blog/mysql-cheat-sheet/mysql-cheat-sheet-letter.pdf)
+  - [tutorialspoint.com](https://www.tutorialspoint.com/mariadb/index.htm)
+  - [geeksforgeeks.org](https://www.geeksforgeeks.org/mysql/mysql-tutorial/)
 
 ## Docker
 
@@ -30,6 +34,7 @@ docker run --name "db-mariadb" -p 3306:3306 -e "MARIADB_USER=user" -e "MARIADB_P
 ### Conectar
 
 DBeaver
+
 <p align="center">
   <img src="./assets/mariadb1.png" width="524"/>
 </p>
