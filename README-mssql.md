@@ -55,11 +55,13 @@ docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA
 Management Studio
 
 <p align="center">
-  <img src="./assets/mssql1.png" width="317.5"/>
+  <img src="./assets/mssql1.png" width="317"/>
 </p>
+
 DBeaver
+
 <p align="center">
-  <img src="./assets/mssql2.png" width="524"/>
+  <img src="./assets/mssql2.png" width="502"/>
 </p>
 
 ## Base de datos de ejemplo
