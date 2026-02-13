@@ -34,18 +34,9 @@ El siguiente comando en PowerShell descargan la imagen.
 docker pull "mcr.microsoft.com/mssql/server:2025-CU2-ubuntu-24.04"
 ```
 
-Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
-#creación de carpeta base
-New-Item -ItemType Directory -Force -Path "C:\Docker"
-
-#creación de volúmenes en carpeta base
-docker volume create "db-mssql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-data"
-docker volume create "db-mssql-log" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-log"
-docker volume create "db-mssql-backup" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-backup"
-docker volume create "db-mssql-secrets" --opt o=bind --opt type=none --opt device="C:\Docker\db-mssql-secrets"
-
 #creación y ejecución del contenedor
 docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e "MSSQL_COLLATION=Latin1_General_100_CI_AI" -v "db-mssql-data:/var/opt/mssql/data" -v "db-mssql-log:/var/opt/mssql/log" -v "db-mssql-backup:/var/opt/mssql/backup" -v "db-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2025-CU2-ubuntu-24.04"
 ```

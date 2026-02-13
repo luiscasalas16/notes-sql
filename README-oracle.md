@@ -49,15 +49,9 @@ El siguiente comando en PowerShell descargan la imagen.
 docker pull container-registry.oracle.com/database/enterprise:21.3.0.0
 ```
 
-Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
-#creación de carpeta base
-New-Item -ItemType Directory -Force -Path "C:\Docker"
-
-#creación de volúmenes en carpeta base
-docker volume create "db-oracle-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-oracle-data"
-
 #creación y ejecución del contenedor
 docker run --name "db-oracle" -p 1521:1521 -p 5500:5500 -e "ORACLE_PDB=ORCL" -e "ORACLE_PWD=DEMO123*" -e "ORACLE_EDITION=enterprise" -v "db-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:21.3.0.0"
 ```

@@ -22,15 +22,9 @@ El siguiente comando en PowerShell descargan la imagen.
 docker pull "postgres:18.0"
 ```
 
-Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
-#creación de carpeta base
-New-Item -ItemType Directory -Force -Path "C:\Docker"
-
-#creación de volúmenes en carpeta base
-docker volume create "db-postgres-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-postgres-data"
-
 #creación y ejecución del contenedor
 docker run --name "db-postgres" -p 5432:5432 -e "POSTGRES_USER=user" -e "POSTGRES_PASSWORD=DEMO123*" -e "POSTGRES_DB=demo" -v "db-postgres-data:/var/lib/postgresql" -d "postgres:18.0"
 ```

@@ -18,15 +18,9 @@ El siguiente comando en PowerShell descargan la imagen.
 docker pull "container-registry.oracle.com/mysql/community-server:9.5.0"
 ```
 
-Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
-#creación de carpeta base
-New-Item -ItemType Directory -Force -Path "C:\Docker"
-
-#creación de volúmenes en carpeta base
-docker volume create "db-mysql-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-mysql-data"
-
 #creación y ejecución del contenedor
 docker run --name "db-mysql" -p 3306:3306 -e "MYSQL_USER=user" -e "MYSQL_PASSWORD=DEMO123*" -e "MYSQL_ROOT_PASSWORD=DEMO123*" -e "MYSQL_ROOT_HOST=%" -e "MYSQL_DATABASE=demo" -v "db-mysql-data:/var/lib/mysql" -d "container-registry.oracle.com/mysql/community-server:9.5.0"
 ```

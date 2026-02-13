@@ -18,15 +18,9 @@ El siguiente comando en PowerShell descargan la imagen.
 docker pull "mariadb:12.0.2"
 ```
 
-Los siguientes comandos en PowerShell crean y ejecutan el contenedor.
+El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
-#creación de carpeta base
-New-Item -ItemType Directory -Force -Path "C:\Docker"
-
-#creación de volúmenes en carpeta base
-docker volume create "db-mariadb-data" --opt o=bind --opt type=none --opt device="C:\Docker\db-mariadb-data"
-
 #creación y ejecución del contenedor
 docker run --name "db-mariadb" -p 3306:3306 -e "MARIADB_USER=user" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -e "MARIADB_DATABASE=demo" -v "db-mariadb-data:/var/lib/mysql" -d "mariadb:12.0.2"
 ```
