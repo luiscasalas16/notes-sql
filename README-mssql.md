@@ -38,7 +38,7 @@ El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
 #creación y ejecución del contenedor
-docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e "MSSQL_COLLATION=Latin1_General_100_CI_AI" -v "db-mssql-data:/var/opt/mssql/data" -v "db-mssql-log:/var/opt/mssql/log" -v "db-mssql-backup:/var/opt/mssql/backup" -v "db-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2025-CU2-ubuntu-24.04"
+docker run --name "db-mssql" -p 1433:1433 -u 0:0 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=DEMO123*" -e "MSSQL_COLLATION=Latin1_General_100_CI_AI" -e "TZ=America/Costa_Rica" -v "db-mssql-data:/var/opt/mssql/data" -v "db-mssql-log:/var/opt/mssql/log" -v "db-mssql-backup:/var/opt/mssql/backup" -v "db-mssql-secrets:/var/opt/mssql/secrets" -d "mcr.microsoft.com/mssql/server:2025-CU2-ubuntu-24.04"
 ```
 
 ### Conectar
