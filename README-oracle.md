@@ -46,14 +46,14 @@ docker login container-registry.oracle.com
 El siguiente comando en PowerShell descargan la imagen.
 
 ```powershell
-docker pull container-registry.oracle.com/database/enterprise:21.3.0.0
+docker image pull container-registry.oracle.com/database/enterprise:21.3.0.0
 ```
 
 El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
 #creación y ejecución del contenedor
-docker run --name "db-oracle" -p 1521:1521 -p 5500:5500 -e "ORACLE_PDB=ORCL" -e "ORACLE_PWD=DEMO123*" -e "ORACLE_EDITION=enterprise" -v "db-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:21.3.0.0"
+docker container run --name "db-oracle" -p 1521:1521 -p 5500:5500 -e "ORACLE_PDB=ORCL" -e "ORACLE_PWD=DEMO123*" -e "ORACLE_EDITION=enterprise" -v "db-oracle-data:/opt/oracle/oradata" -d "container-registry.oracle.com/database/enterprise:21.3.0.0"
 ```
 
 ### Conectar

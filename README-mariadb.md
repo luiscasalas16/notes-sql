@@ -15,14 +15,14 @@
 El siguiente comando en PowerShell descargan la imagen.
 
 ```powershell
-docker pull "mariadb:12.0.2"
+docker image pull "mariadb:12.0.2"
 ```
 
 El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
 #creación y ejecución del contenedor
-docker run --name "db-mariadb" -p 3306:3306 -e "MARIADB_USER=user" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -e "MARIADB_DATABASE=demo" -v "db-mariadb-data:/var/lib/mysql" -d "mariadb:12.0.2"
+docker container run --name "db-mariadb" -p 3306:3306 -e "MARIADB_USER=user" -e "MARIADB_PASSWORD=DEMO123*" -e "MARIADB_ROOT_PASSWORD=DEMO123*" -e "MARIADB_DATABASE=demo" -v "db-mariadb-data:/var/lib/mysql" -d "mariadb:12.0.2"
 ```
 
 ### Conectar

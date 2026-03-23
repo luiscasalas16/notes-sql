@@ -15,14 +15,14 @@
 El siguiente comando en PowerShell descargan la imagen.
 
 ```powershell
-docker pull "container-registry.oracle.com/mysql/community-server:9.5.0"
+docker image pull "container-registry.oracle.com/mysql/community-server:9.5.0"
 ```
 
 El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
 #creación y ejecución del contenedor
-docker run --name "db-mysql" -p 3306:3306 -e "MYSQL_USER=user" -e "MYSQL_PASSWORD=DEMO123*" -e "MYSQL_ROOT_PASSWORD=DEMO123*" -e "MYSQL_ROOT_HOST=%" -e "MYSQL_DATABASE=demo" -v "db-mysql-data:/var/lib/mysql" -d "container-registry.oracle.com/mysql/community-server:9.5.0"
+docker container run --name "db-mysql" -p 3306:3306 -e "MYSQL_USER=user" -e "MYSQL_PASSWORD=DEMO123*" -e "MYSQL_ROOT_PASSWORD=DEMO123*" -e "MYSQL_ROOT_HOST=%" -e "MYSQL_DATABASE=demo" -v "db-mysql-data:/var/lib/mysql" -d "container-registry.oracle.com/mysql/community-server:9.5.0"
 ```
 
 ### Conectar

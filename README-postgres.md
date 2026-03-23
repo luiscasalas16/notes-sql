@@ -19,14 +19,14 @@
 El siguiente comando en PowerShell descargan la imagen.
 
 ```powershell
-docker pull "postgres:18.0"
+docker image pull "postgres:18.0"
 ```
 
 El siguiente comando en PowerShell crean y ejecutan el contenedor.
 
 ```powershell
 #creación y ejecución del contenedor
-docker run --name "db-postgres" -p 5432:5432 -e "POSTGRES_USER=user" -e "POSTGRES_PASSWORD=DEMO123*" -e "POSTGRES_DB=demo" -v "db-postgres-data:/var/lib/postgresql" -d "postgres:18.0"
+docker container run --name "db-postgres" -p 5432:5432 -e "POSTGRES_USER=user" -e "POSTGRES_PASSWORD=DEMO123*" -e "POSTGRES_DB=demo" -v "db-postgres-data:/var/lib/postgresql" -d "postgres:18.0"
 ```
 
 ### Conectar
